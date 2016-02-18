@@ -1,0 +1,22 @@
+<ion-view view-title="{{reward.name}}">
+  <ion-content>
+ 
+      <ion-item class="item item-thumbnail-left item-icon-right"  type="item-text-wrap" >
+        <img ng-src="{{reward.image}}">
+        <h2>{{reward.name}}</h2>  
+		
+    </ion-list>
+	<div class="list">
+  <label class="item item-input">
+	<input type="hidden" value="{{reward.id}}">
+    <input type="text" placeholder="Email">
+  </label>  
+  <label class="item item-input">
+    <textarea placeholder="Comments"></textarea>
+  </label>
+  <button class="button button-block button-positive">
+  Request
+</button>
+</div>
+  </ion-content>
+</ion-view>

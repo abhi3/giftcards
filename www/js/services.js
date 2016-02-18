@@ -2,7 +2,7 @@ angular.module('starter.services', [])
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
-
+	
   // Some fake testing data
   var chats = [{
     id: 0,
@@ -30,7 +30,7 @@ angular.module('starter.services', [])
     lastText: 'This is wicked good ice cream.',
     face: 'img/mike.png'
   }];
-
+console.log("in service");
   return {
     all: function() {
       return chats;
@@ -47,4 +47,12 @@ angular.module('starter.services', [])
       return null;
     }
   };
-});
+})
+.factory('RewardsService', function($resource) {
+	
+	
+	return $resource('https://sailrest.herokuapp.com/reward/:id');
+	 
+  // Note the full endpoint address
+})
+;
