@@ -21,9 +21,9 @@ console.log("in Ctrl");
   $scope.chat = Chats.get($stateParams.chatId);
 })
 .controller('RewardsCtrl',function($scope, RewardsService){
-		
+
 	 $scope.rewards = RewardsService.query();
-	 
+
  // var entry = RewardsService.get({ id: $scope.id }, function() {
  //   console.log(RewardsService);
  // }); // get() returns a single RewardsService
@@ -38,17 +38,17 @@ console.log("in Ctrl");
 
  // RewardsService.save($scope.RewardsService, function() {
     //data saved. do something here.
- // }); //saves an RewardsService. Assuming $scope.RewardsService is the RewardsService object  
+ // }); //saves an RewardsService. Assuming $scope.RewardsService is the RewardsService object
 })
 .controller('RewardsDetailCtrl', function($scope, $stateParams, RewardsService) {
 	//console.log($scope.rewards);
 	$scope.reward = RewardsService.get({ id: $stateParams.id }, function() {
-   
+
   });
 })
 .controller('OffersCtrl',function($scope, OffersService){
-		
-	 $scope.offers = OffersService.query();
+
+	 $scope.Offers = OffersService.query();
 })
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
