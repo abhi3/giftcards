@@ -55,4 +55,13 @@ console.log("in service");
 	 
   // Note the full endpoint address
 })
+.factory('OffersService', function($resource) {
+	
+	
+	return $resource('https://sailrest.herokuapp.com/offers/:id');
+	 
+  // Note the full endpoint address
+})
+
+
 ;

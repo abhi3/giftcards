@@ -46,6 +46,10 @@ console.log("in Ctrl");
    
   });
 })
+.controller('OffersCtrl',function($scope, OffersService){
+		
+	 $scope.offers = OffersService.query();
+})
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
