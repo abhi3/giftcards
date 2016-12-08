@@ -6,17 +6,24 @@
         <h2>{{reward.name}}</h2>  
 		
     </ion-list>
-	<div class="list">
-  <label class="item item-input">
-	<input type="hidden" value="{{reward.id}}">
-    <input type="text" placeholder="Email">
-  </label>  
-  <label class="item item-input">
-    <textarea placeholder="Comments"></textarea>
-  </label>
-  <button class="button button-block button-positive">
-  Request
-</button>
+	<div class="list">	
+	<form name="myForm" ng-submit="requestReward(reward)" novalidate>
+		<label class="item item-input">
+			<input type="hidden" value="{{reward.id}}" ng-model="reward.id">
+			<input type="email" placeholder="Email" name="email" ng-model="reward.email" ng-minlength="4" required >
+		</label>  
+		<label class="item item-input">
+			<textarea placeholder="Comments"></textarea>
+		</label>
+		<div class="padding">
+            <p ng-show="myForm.email.$error.required">* Email is required</p>
+            <p ng-show="myForm.email.$invalid && !myForm.email.$pristine">* Must be a valid email address</p>
+           
+        </div>
+		<button class="button button-block button-positive" ng-disabled="myForm.$invalid" >
+			Request
+		</button>
+	</form>
 </div>
   </ion-content>
 </ion-view>

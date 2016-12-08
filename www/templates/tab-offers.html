@@ -3,7 +3,7 @@
 
     <ion-list>
 
-      <ion-item class="item item-thumbnail-left item-icon-right" ng-repeat="offer in Offers" type="item-text-wrap" href="#/tab/offers/{{offer.id}}">
+      <ion-item class="item item-thumbnail-left item-icon-right" ng-repeat="offer in Offers" ng-controller="OfferCtrl" type="item-text-wrap" ng-click="offerHandler()">
 
         <h2>{{offer.name}}</h2>
 		<i class="icon ion-chevron-right icon-accessory"></i>

@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ngResource', 'starter.controllers', 'starter.services'])
+
+angular.module('starter', ['ionic','ngResource','ngCordova', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -22,15 +23,39 @@ angular.module('starter', ['ionic','ngResource', 'starter.controllers', 'starter
     }
   });
 })
+.constant('AUTH_EVENTS', {
+  notAuthenticated: 'auth-not-authenticated',
+  notAuthorized: 'auth-not-authorized'
+})
 
-.config(function($stateProvider, $urlRouterProvider) {
+.constant('USER_ROLES', {
+  admin: 'admin_role',
+  public: 'public_role'
+})
+.directive('myclick', function() {
+        return function(scope, element, attrs) {
+            element.bind('touchstart click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                if (event.type === 'click') {
+                    scope.$apply(attrs['myclick']);
+                }
+            });
+        };
+    })
+
+.config(function($stateProvider, $urlRouterProvider,USER_ROLES) {
 
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-
+  .state('login', {
+      url: '/login',
+      templateUrl: 'templates/login.html',
+      controller: 'LoginCtrl'
+    })
   // setup an abstract state for the tabs directive
     .state('tab', {
     url: '/tab',
@@ -103,10 +128,19 @@ angular.module('starter', ['ionic','ngResource', 'starter.controllers', 'starter
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
       }
+    },
+    data: {
+      authorizedRoles: [USER_ROLES.admin]
     }
-  });
+  })
+
+  ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+   //$urlRouterProvider.otherwise('/tab/dash');
+	$urlRouterProvider.otherwise(function ($injector, $location) {
+		var $state = $injector.get("$state");
+		$state.go("tab.dash");
+	});
 
 });
